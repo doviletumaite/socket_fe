@@ -26,6 +26,12 @@ const Home = () => {
                  </Form>
 
           </Col>
+
+          <Col md={2} style={{ borderLeft: '1px solid black' }}>
+              <div className="my-3">Connected Users:</div>
+              <ListGroup></ListGroup>
+          </Col>
+
         </Row>
       </Container>
         </div>
