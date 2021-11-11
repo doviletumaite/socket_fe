@@ -14,7 +14,7 @@ const Home = () => {
    
         useEffect(() => {
             socket.on('connect', () => {
-                console.log('connected with secket')
+                console.log('connected with socket')
             })
             socket.on('loggedIn', () => {
                 console.log('user is logged in :]')
@@ -45,14 +45,26 @@ const Home = () => {
                 console.log(error)
             }
         }
+    
+    const handleUsernameSubmit = async (e) => {
+        e.preventDefault()
+        socket.emit("setUsername", {
+            userName
+        })
+    }
 
     return(
         <div>
       <Container fluid className="px-4">
         <Row className="my-3" style={{ height: '95vh' }}>
           <Col md={10} className="d-flex flex-column justify-content-between">
-              <Form>
-                  <FormControl/>
+              <Form onSubmit={handleUsernameSubmit} className="d-flex">
+                  <FormControl
+                  placeholder="insert username :)"
+                  value={userName}
+                  onChange={(e)=> setUserName(e.target.value)}
+                  disabled={loggedIn}
+                  />
                   <Button variant="light" className="ml-2">Room</Button>
               </Form>
 
